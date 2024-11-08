@@ -1,0 +1,5 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+ETOS2/project/ETOS1/db.sqlite3
+# Ignore SQLite database file

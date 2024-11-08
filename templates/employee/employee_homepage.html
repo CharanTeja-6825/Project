@@ -1,0 +1,139 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Homepage</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Background image applied to the entire body */
+        body {
+            background-image: url("{% static 'images/b1.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        /* Hero section overlay to darken background for text readability */
+        .hero-section {
+            position: relative;
+            z-index: 1;
+            padding: 30px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent overlay */
+            color: white; /* Ensure text is white */
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            color: white; /* Ensure the header text is white */
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Ensure the card background is slightly transparent for consistency */
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0);
+        }
+
+        /* Card hover effect */
+        .card:hover {
+            transform: scale(1.05);
+            transition: 0.3s ease;
+        }
+
+        /* Responsive margin for the content section */
+        .content-section {
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .card-deck .card {
+            margin-bottom: 20px;
+        }
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50px;
+            padding: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% include 'employee/employee_navbar.html' %}
+
+    {% block content %}
+    <!-- Hero Section with Transparent Overlay and Text -->
+    <section class="hero-section">
+        <div class="container">
+            {% if user.is_authenticated %}
+                <h1 class="text-black">Welcome, {{ user.first_name }}!</h1>
+            {% else %}
+                <h1>Welcome, Employee!</h1>
+            {% endif %}
+            <p class="text-black">Access your assigned courses, track your progress, and view your certificates here.</p>
+        </div>
+    </section>
+
+    <!-- Employee Specific Content Section with Cards -->
+    <section class="content-section container mt-4">
+        <div class="row">
+            <!-- Assigned Courses Card -->
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Assigned Courses</h5>
+                        <p class="card-text">View the courses that have been assigned to you.</p>
+                        <a href="#" class="btn btn-primary">View Courses</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Card -->
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Progress</h5>
+                        <p class="card-text">Track your progress and see how you're doing.</p>
+                        <a href="#" class="btn btn-primary">Track Progress</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Card -->
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Certificates</h5>
+                        <p class="card-text">View your certificates upon completion of courses.</p>
+                        <a href="#" class="btn btn-primary">View Certificates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- Chatbot -->
+  <div class="chatbot">
+    <span>💬 Chat with us!</span>
+  </div>
+  <!-- Chatbot Script -->
+  <script>
+    document.querySelector('.chatbot').addEventListener('click', function() {
+      alert('Chatbot is under development. Stay tuned!');
+    });
+  </script>
+    </section>
+
+    {% endblock %}
+</body>
+</html>

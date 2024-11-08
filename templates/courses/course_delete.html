@@ -1,0 +1,20 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}Delete Course - TrainWise{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1>Delete Course</h1>
+        <a href="{% url 'admin_app:course_list' %}" class="btn btn-secondary">Back to Course List</a>
+    </div>
+
+    <div class="alert alert-danger">
+        <p>Are you sure you want to delete the course "<strong>{{ course.name }}</strong>"?</p>
+    </div>
+
+    <form method="post" action="{% url 'admin_app:delete_course' course.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Course</button>
+        <a href="{% url 'admin_app:course_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

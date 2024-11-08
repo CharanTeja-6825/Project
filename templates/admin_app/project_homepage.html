@@ -1,0 +1,170 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Homepage</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'images/admin_logo.jpeg' %}" type="image/x-icon">
+    <style>
+      body {
+            background-image: url("{% static 'images/b1.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        .hero-section {
+            background-color: ;
+            color: black;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+        }
+        .card-deck .card {
+            margin-bottom: 20px;
+        }
+        .services-section {
+            background-color:;
+            padding: 60px 0;
+            margin-bottom: 40px; /* Add gap between sections */
+        }
+        .about-section {
+            padding: 30px 0;
+            background-color: #343a40;
+            color: white;
+            margin-bottom: 40px; /* Add gap between sections */
+        }
+        .about-section h2, .contact-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .about-images {
+            margin-top: 30px;
+        }
+        .footer {
+            background-color: #212529;
+            color: white;
+            padding: 10px 0;  /* Decreased footer height */
+            width: 100%;  /* Full screen width */
+            text-align: center;
+        }
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50px;
+            padding: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+  <!-- Admin Navbar -->
+  {% include 'admin_app/navbar.html' %}
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      {% if user.is_authenticated %}
+        <h1>Welcome, {{ user.first_name }}!</h1>
+      {% else %}
+        <h1>Welcome To TrainWise!</h1>
+      {% endif %}
+      <p>Manage your training programs, track progress, and more from here.</p>
+    </div>
+  </section>
+
+  <!-- Admin Specific Content (Reverted Services) -->
+  <section class="container mt-4 services-section">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Manage Courses</h5>
+            <p class="card-text">Create, update, and manage training courses for your employees.</p>
+            <a href="{% url 'admin_app:course_list' %}" class="btn btn-primary">Go to Courses</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Assign Trainers</h5>
+            <p class="card-text">Assign trainers to courses and monitor their performance.</p>
+            <a href="{% url 'admin_app:course_list' %}" class="btn btn-primary">Go to Trainers</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Reports</h5>
+            <p class="card-text">Generate and view detailed reports on training progress.</p>
+            <a href="#" class="btn btn-primary">View Reports</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section with more pictures and info -->
+  <section class="about-section">
+    <div class="container">
+      <h2>About Us</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p>We are committed to revolutionizing the training management industry. Our platform allows businesses to streamline their training processes efficiently, with features that facilitate content creation, assignment, and tracking of learning progress. With an emphasis on providing seamless experiences for administrators, trainers, and learners, we aim to foster continuous professional development.</p>
+        </div>
+        <div class="col-md-6">
+          <img src="{% static 'images/about_us_1.png' %}" class="img-fluid" alt="Our Team" width="500" height="300">
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact and Support Section -->
+  <section class="contact-section">
+    <div class="container">
+      <h2>Contact & Support</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Customer Support</h5>
+          <p>If you have any questions or need help, feel free to reach out to our support team.</p>
+          <ul>
+            <li>Email: support@adminhomepage.com</li>
+            <li>Phone: +1 (800) 123-4567</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h5>Live Chat</h5>
+          <p>Need immediate assistance? Click on the chatbot icon below to start a live chat with our support team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>&copy; 2024 Admin Homepage. All rights reserved.</p>
+  </footer>
+
+  <!-- Chatbot -->
+  <div class="chatbot">
+    <span>💬 Chat with us!</span>
+  </div>
+
+  <!-- Chatbot Script -->
+  <script>
+    document.querySelector('.chatbot').addEventListener('click', function() {
+      alert('Chatbot is under development. Stay tuned!');
+    });
+  </script>
+</body>
+</html>
